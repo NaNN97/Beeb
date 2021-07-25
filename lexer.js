@@ -13,26 +13,13 @@ let lexer = moo.compile({
   identifier: /[a-zA-Z][a-zA-Z_0-9]*/,
   fatarrow: '=>',
   assign: '=',
-  newLine: { match: /\r?\n/, lineBreaks: true }, // New line
+  NL: { match: /[\r\n]+/, lineBreaks: true }, // New line
 });
 
-// try {
-//   // read contents of the file
-//   const data = fs.readFileSync('example.beeb', 'UTF-8');
-
-//   // split the contents by new line
-//   const lines = data.split(/\r?\n/);
-
-//   // print all lines
-//   lines.forEach((line) => {
-//       console.log(line);
-//   });
-// } catch (err) {
-//   console.error(err);
-// }
+module.exports = lexer;
 
 async function main() {
-  const code = (await fs.readFile("example.beeb")).toString();
+  const code = (await fs.readFile("example.small")).toString();
   lexer.reset(code);
   while (true) {
     const token = lexer.next();
@@ -43,5 +30,3 @@ async function main() {
   }
 
 }
-
-main().catch(err => console.log(err.stack));
