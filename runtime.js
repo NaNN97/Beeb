@@ -1,8 +1,3 @@
-var name = "Jacki"
-var age = 4
-var favourite_color = "Yellow"
-var sum = add(1, multiply(2, substract(4, 3)))
-print("The sum is ", sum)
 function print(...args) {
     console.log(...args);
 }
@@ -15,10 +10,18 @@ function multiply(x, y) {
     return x * y;
 }
 
-function substract(x, y) {
+function subtract(x, y) {
     return x - y;
 }
 
 function divide(x, y) {
     return x / y;
+}
+
+function sqrt(x) {
+    return Math.sqrt(x);
+}
+
+function pow(x, y) {
+    return Math.pow(x, y);
 }
