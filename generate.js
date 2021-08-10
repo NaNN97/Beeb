@@ -3,7 +3,7 @@ const fs = require("mz/fs");
 async function main () {
     const filename = process.argv[2];
     if (!filename) {
-        console.log("Please provide a .ast file.");
+        console.log("Please provide an .ast file.");
         return;
     }
 
