@@ -1,1 +1,11 @@
-a = true
+a = 2.5
+
+print("Is 2.5 equal to 2.5? " isEqualTo(a a))
+
+isTrue = true
+isFalse = false
+
+print("True = " isTrue)
+print("False = " isFalse)
+
+print("Is isTrue equal to isFalse?" isEqualTo(isTrue isFalse))

@@ -1,13 +1,6 @@
 
-isTrue = true
-isFalse = false
 a = 2.5
 
-
-print("Is 2.5 equal to 2.5? " isEqualTo(a a))
-print("Is isTrue equal to isFalse?" isEqualTo(isTrue isFalse))
-print("True = " isTrue)
-print("False = " isFalse)
 print("Addition " add(a a))
 print("Subtraction " subtract(1 2))
 print("Multiplication " multiply(10 2))

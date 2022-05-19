@@ -58,7 +58,7 @@ arg_list
         %}
 
 expr
-    -> %boolean      {% id %}
+    -> %boolean     {% id %}
     |  %string      {% id %}
     |  %float       {% id %}
     |  %number      {% id %}
