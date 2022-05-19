@@ -4,12 +4,18 @@ const fs = require('mz/fs');
 let lexer = moo.compile({
   WS:      /[ \t]+/, // White space
   comment: /\/\/.*?$/,  // Comments
+  float: {
+    match: /(?:^\+|\-?)(?:[1-9]\d{0,4}|0|)\.\d/,
+    lineBreaks: true,
+    value: (x) => parseFloat(x),
+  }, // Floats - they have to be above number otherwise it will not work properly
   number:  /0|[1-9][0-9]*/, // Numbers
+  boolean: ["true", "false"], // Booleans
   string:  /"(?:\\["\\]|[^\n"\\])*"/, // Strings
   lparen:  '(', // Left bracket
   rparen:  ')', // Right bracket 
-  lbrace:  '{',
-  rbrace:  '}',
+  lbrace:  '{', // Left curly bracket
+  rbrace:  '}', // Right curly bracket
   identifier: /[a-zA-Z][a-zA-Z_0-9]*/,
   fatarrow: '=>',
   assign: '=',
@@ -19,7 +25,7 @@ let lexer = moo.compile({
 module.exports = lexer;
 
 async function main() {
-  const code = (await fs.readFile("example.small")).toString();
+  const code = (await fs.readFile("example.beeb")).toString();
   lexer.reset(code);
   while (true) {
     const token = lexer.next();

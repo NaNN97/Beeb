@@ -23,7 +23,7 @@ function generateJsForStatements(statements) {
         lines.push(line);
     }
 
-    return lines.join("\n");
+    return lines.join("\r\n");
 }
 
 function generateJsForStatementOrExpr(node) {
@@ -33,7 +33,10 @@ function generateJsForStatementOrExpr(node) {
         const js = `var ${varName} = ${jsExpr}`;
         return js;
     } else if (node.type ==="fun_call") {
-        const funName = node.fun_name.value;
+        let funName = node.fun_name.value;
+        if (funName == "if") {
+            funName = "$if"
+        }
         const argList = node.arguments.map((arg) => {
             return generateJsForStatementOrExpr(arg);
         }).join(", ");
@@ -42,11 +45,32 @@ function generateJsForStatementOrExpr(node) {
         return node.value;
     } else if (node.type === "number") {
         return node.value;
+    } else if (node.type === "float") {
+        return node.value;
+    }  else if (node.type === "boolean") {
+        return node.value;
     } else if (node.type === "identifier") {
+        return node.value;
+    } else if (node.type === "lambda") {
+        const paramList = node.parameters.map(param => param.value).join(", ");
+        const jsBody = node.body.map((arg, i) => {
+            const jsCode = generateJsForStatementOrExpr(arg);
+            if (i === node.body.length - 1) {
+                return "return " + jsCode;
+            } else {
+                return jsCode;
+            }
+        }).join(";\r\n");
+        return `function (${paramList}) {\r\n${indent(jsBody)}\r\n}`;
+    } else if (node.type === "comment") {
         return node.value;
     } else {
         throw new Error(`Unhandled AST node type ${node.type}`);
     }
+}
+
+function indent(string) {
+    return string.split("\r\n").map(line => "    " + line).join("\r\n");
 }
 
 main().catch(err => console.log(err.stack));

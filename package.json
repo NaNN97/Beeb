@@ -1,10 +1,10 @@
 {
-  "name": "Beeb",
+  "name": "beeb",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gen-parser": "nearleyc small.ne -o small.js"
+    "gen-parser": "nearleyc beeb.ne -o beeb.js"
   },
   "keywords": [],
   "author": "",

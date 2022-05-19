@@ -5,11 +5,11 @@ const exec = util.promisify(require('child_process').exec);
 async function main() {
     const filename = process.argv[2];
     if (!filename) {
-        console.log("Please provide a .small file.");
+        console.log("Please provide a .beeb file.");
         return;
     }
-    const astFilename = filename.replace(".small", ".ast");
-    const jsFilename = filename.replace(".small", ".js");
+    const astFilename = filename.replace(".beeb", ".ast");
+    const jsFilename = filename.replace(".beeb", ".js");
     await myExec(`node parse.js ${filename}`);
     await myExec(`node generate.js ${astFilename}`);
     await myExec(`node ${jsFilename}`);

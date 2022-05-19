@@ -25,3 +25,23 @@ function sqrt(x) {
 function pow(x, y) {
     return Math.pow(x, y);
 }
+
+function eq(x, y) {
+    return x === y;
+}
+
+function $if(cond, consequent, alternate) {
+    if (cond) {
+        return consequent();
+    } else {
+        return alternate();
+    }
+}
+
+function isEqualTo(x, y) {
+    if (x === y) {
+        return true;
+    } else {
+        return false;
+    }
+}
