@@ -1,0 +1,21 @@
+•	A BUILD.txt file explaining clearly how to build the project from source using software you have made available on your virtual machine instance.
+
+ast - abstract syntax tree
+
+First we would need to run a command called
+npm run gen-parser
+
+This will run exactly this command which is defined in package.json file - nearleyc beeb.ne -o beeb.js"
+Nearley will take "beeb.ne" file which is our grammar file that has set of rules. This will generate file called "beeb.js"
+
+To parse an example file enter below command in a console figuratively changing "ex1.beeb" to "ex2.beeb" depending on which example you want to run:
+node parse.js ex1.beeb
+
+This will generate abstract syntax tree file ".ast" for that source ".beeb" file.
+
+Once that is done you can run the following command:
+node generate.js ex1.ast
+
+This will generate javascript file source code file of our "ex1.ast" file.
+
+There is also a "run.js" file which creates both ".ast" as well as ".js" file from our source ".beeb" file. It also returns the result of any "print()" function from the ".beeb" file in our console.
